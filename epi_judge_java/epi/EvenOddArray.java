@@ -11,6 +11,21 @@ public class EvenOddArray {
 
   public static void evenOdd(List<Integer> A) {
     // TODO - you fill in here.
+    // Two pointers
+    int evenNum = 0;
+    int oddNum = A.size() -1;
+    while (evenNum < oddNum) {
+      if (A.get(evenNum) % 2 == 0) {
+        evenNum ++; // if the num is even, move the left pointer
+      }
+      else {
+        int temp = A.get(oddNum);
+        A.set(oddNum, A.get(evenNum));
+        A.set(evenNum, temp);
+        oddNum--; // else, exchange the value and move the right pointer
+      }
+    }
+
     return;
   }
   @EpiTest(testDataFile = "even_odd_array.tsv")
