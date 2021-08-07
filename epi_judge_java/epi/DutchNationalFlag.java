@@ -1,16 +1,42 @@
 package epi;
+import com.sun.management.GarbageCollectionNotificationInfo;
 import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 import epi.test_framework.TimedExecutor;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 public class DutchNationalFlag {
   public enum Color { RED, WHITE, BLUE }
 
   public static void dutchFlagPartition(int pivotIndex, List<Color> A) {
     // TODO - you fill in here.
+    int small= 0, equal = 0, large = A.size();
+    Color temp = A.get(pivotIndex);
+    // small point to the start point of where the equal part begins
+    // equal is the pointer to update the unclassified area
+    // large point to where larger number begins, thus it should first -1 then swap
+    // value, so to set the large from A.size() not A.size()-1
+    while (equal < large) {
+      if (A.get(equal).ordinal() < temp.ordinal()){
+        Collections.swap(A, small, equal);
+        small++;
+        equal++;
+      }
+      else if (A.get(equal).ordinal() == temp.ordinal()){
+        equal++;
+
+      }
+      else{
+//        large --;
+//        Collections.swap(A, equal, large);
+        Collections.swap(A, equal, --large);
+      }
+    }
+
+
     return;
   }
   @EpiTest(testDataFile = "dutch_national_flag.tsv")

@@ -19,10 +19,12 @@ public class EvenOddArray {
         evenNum ++; // if the num is even, move the left pointer
       }
       else {
-        int temp = A.get(oddNum);
-        A.set(oddNum, A.get(evenNum));
-        A.set(evenNum, temp);
-        oddNum--; // else, exchange the value and move the right pointer
+//        int temp = A.get(oddNum);
+//        A.set(oddNum, A.get(evenNum));
+//        A.set(evenNum, temp);
+//        oddNum--; // else, exchange the value and move the right pointer
+        Collections.swap(A, evenNum, oddNum--); // use the methods of java
+
       }
     }
 
