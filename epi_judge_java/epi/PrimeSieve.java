@@ -18,14 +18,16 @@ public class PrimeSieve {
       if (table.get(i)) {
         ans.add(i);
 
+        // set all this primes multiplies to false
         for (int k = i; k <= n; k += i) {
           table.set(k, false);
         }
       }
-
     }
 
     return ans;
+
+    // Time: should be nloglogn    Space: n
 
 
 
