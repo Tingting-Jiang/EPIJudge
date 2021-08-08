@@ -7,6 +7,13 @@ public class AdvanceByOffsets {
   @EpiTest(testDataFile = "advance_by_offsets.tsv")
   public static boolean canReachEnd(List<Integer> maxAdvanceSteps) {
     // TODO - you fill in here.
+    int distance = 0;
+
+
+
+
+
+
     return true;
   }
 
