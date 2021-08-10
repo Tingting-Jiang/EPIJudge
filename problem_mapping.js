@@ -232,7 +232,7 @@ problem_mapping = {
                 "total": 2004
             },
             "Java: AdvanceByOffsets.java": {
-                "passed": 0,
+                "passed": 2004,
                 "total": 2004
             },
             "Python: advance_by_offsets.py": {
@@ -330,7 +330,7 @@ problem_mapping = {
                 "total": 2001
             },
             "Java: NextPermutation.java": {
-                "passed": 0,
+                "passed": 2001,
                 "total": 2001
             },
             "Python: next_permutation.py": {
@@ -414,7 +414,7 @@ problem_mapping = {
                 "total": 745
             },
             "Java: IsValidSudoku.java": {
-                "passed": 0,
+                "passed": 745,
                 "total": 745
             },
             "Python: is_valid_sudoku.py": {

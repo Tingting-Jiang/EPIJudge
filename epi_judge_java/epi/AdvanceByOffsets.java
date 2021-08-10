@@ -8,13 +8,15 @@ public class AdvanceByOffsets {
   public static boolean canReachEnd(List<Integer> maxAdvanceSteps) {
     // TODO - you fill in here.
     int distance = 0;
+    int length = maxAdvanceSteps.size()-1;
+    for (int i = 0; i <= distance && distance < length; i++) {
+      distance = Math.max(distance, i+maxAdvanceSteps.get(i));
+
+    }
+    return distance >= length;
 
 
 
-
-
-
-    return true;
   }
 
   public static void main(String[] args) {
