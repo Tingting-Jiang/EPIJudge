@@ -6,11 +6,60 @@ public class StringIntegerInterconversion {
 
   public static String intToString(int x) {
     // TODO - you fill in here.
-    return "0";
+    final boolean sign = x < 0;
+    StringBuilder builder = new StringBuilder();
+    x= Math.abs(x);
+
+    do{
+      builder.append((char) ('0'+ x%10));
+      x = x/10;
+    } while (x!=0);
+
+    if (sign) {
+      builder.append('-');
+    }
+    builder.reverse();
+    return builder.toString();
+
   }
   public static int stringToInt(String s) {
     // TODO - you fill in here.
-    return 0;
+//    System.out.println("xxxxDSSSS");
+//    System.out.println(s);
+//    System.out.println("DSSSS");
+
+    // this method cannot pass the last test case
+    int i = 0;
+    String c = "";
+    if (s.charAt(0) =='-' || s.charAt(0) =='+'){
+      if (s.charAt(0) =='-') {
+        c = "-";
+      }
+      else {
+        c = "+";
+      }
+      i = 1;
+    }
+    int ans = 0;
+    while (i < s.length()) {
+      int val = s.charAt(i) -'0';
+      ans = ans* 10 + val;
+      i++;
+    }
+    if (c.equals("-")){
+      System.out.println(-ans);
+      return -ans;
+    } else if (c.equals("+")) {
+      return +ans;
+    }
+    return ans;
+
+//    return (s.charAt(0) == '-' ? -1 : 1) *
+//            s.substring((s.charAt(0) == '-' || s.charAt(0) == '+') ? 1 : 0)
+//                    .chars()
+//                    .reduce(0, (runningSum, c) -> runningSum * 10 + c - '0');
+
+
   }
   @EpiTest(testDataFile = "string_integer_interconversion.tsv")
   public static void wrapper(int x, String s) throws TestFailure {
