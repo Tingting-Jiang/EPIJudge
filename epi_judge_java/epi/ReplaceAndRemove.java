@@ -9,7 +9,38 @@ public class ReplaceAndRemove {
 
   public static int replaceAndRemove(int size, char[] s) {
     // TODO - you fill in here.
-    return 0;
+    int ans = 0;
+    int countA = 0;
+    for (int i = 0; i < size; i++) {
+
+      if (s[i] != 'b') {
+        s[ans++] = s[i];
+
+      }
+      if (s[i] == 'a') {
+        countA ++;
+      }
+
+    }
+    ans -= 1;
+    int result = ans + countA;
+    int finalSize = ans+ countA +1;
+
+    while (ans >= 0) {
+     if (s[ans] == 'a') {
+        s[result--] = 'd';
+        s[result --] = 'd';
+
+      }
+     else {
+       s[result--] = s[ans];
+     }
+      --ans;
+
+    }
+    return finalSize;
+
+
   }
   @EpiTest(testDataFile = "replace_and_remove.tsv")
   public static List<String>
