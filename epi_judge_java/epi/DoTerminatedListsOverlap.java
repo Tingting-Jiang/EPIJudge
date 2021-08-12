@@ -3,38 +3,60 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 import epi.test_framework.TimedExecutor;
+
+import java.util.HashMap;
+
 public class DoTerminatedListsOverlap {
 
   public static ListNode<Integer>
   overlappingNoCycleLists(ListNode<Integer> l0, ListNode<Integer> l1) {
     // TODO - you fill in here.
-    int len0 = length(l0);
-    int len1 = length(l1);
-    if (len0 > len1)
-      for (int i = 0; i < len0- len1; i++) {
-        l0 = l0.next;
-      }
-    else {
-      for (int i = 0; i < len1- len0; i++) {
-        l1 = l1.next;
-      }
-    }
-    while (l0 != null && l1!= null && l0 != l1) {
+    // check the length of two list and forward the longer one and then traverse together
+    // time : 2(M+N) Space: O(1)
+//    int len0 = length(l0);
+//    int len1 = length(l1);
+//    if (len0 > len1)
+//      for (int i = 0; i < len0- len1; i++) {
+//        l0 = l0.next;
+//      }
+//    else {
+//      for (int i = 0; i < len1- len0; i++) {
+//        l1 = l1.next;
+//      }
+//    }
+//    while (l0 != null && l1!= null && l0 != l1) {
+//      l0 = l0.next;
+//      l1 = l1.next;
+//    }
+//    return l1;
+
+
+    // use hashmap to record the node been visited, time: M+N space: M/N
+    HashMap<ListNode<Integer>,Integer > dic = new HashMap<>();
+    while (l0 != null) {
+      dic.put(l0, l0.data);
       l0 = l0.next;
+    }
+    while (l1 != null) {
+      if (dic.containsKey(l1)) {
+        return l1;
+      }
       l1 = l1.next;
     }
-    return l1;
+    return null;
+
+
 
   }
 
-  private static int length(ListNode<Integer> l) {
-    int ans = 0;
-    while (l != null) {
-      l = l.next;
-      ans ++;
-    }
-    return ans;
-  }
+//  private static int length(ListNode<Integer> l) {
+//    int ans = 0;
+//    while (l != null) {
+//      l = l.next;
+//      ans ++;
+//    }
+//    return ans;
+//  }
 
 
 
