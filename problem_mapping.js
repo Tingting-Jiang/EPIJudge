@@ -668,7 +668,7 @@ problem_mapping = {
                 "total": 457
             },
             "Java: InsertInList.java": {
-                "passed": 0,
+                "passed": 504,
                 "total": 504
             },
             "Java: SearchInList.java": {
