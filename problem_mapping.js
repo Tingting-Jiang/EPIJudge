@@ -672,7 +672,7 @@ problem_mapping = {
                 "total": 504
             },
             "Java: SearchInList.java": {
-                "passed": 0,
+                "passed": 505,
                 "total": 505
             },
             "Python: delete_from_list.py": {
