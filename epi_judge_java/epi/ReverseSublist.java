@@ -7,7 +7,25 @@ public class ReverseSublist {
   public static ListNode<Integer> reverseSublist(ListNode<Integer> L, int start,
                                                  int finish) {
     // TODO - you fill in here.
-    return null;
+    if (L == null) return null;
+    ListNode<Integer> dummy = new ListNode<>(0, L);
+    ListNode<Integer> prev = dummy;
+    int traverse = 0;
+    while (traverse < start-1) {
+      prev = prev.next;
+      traverse ++;
+    }
+
+    ListNode<Integer> curr = prev.next;
+    ListNode<Integer> suc = curr.next;
+   for (int i = 0; i< finish - start; i++) {
+      curr.next = suc.next;
+      suc.next = prev.next;
+      prev.next = suc;
+      suc = curr.next;
+    }
+    return dummy.next;
+
   }
 
   public static void main(String[] args) {
