@@ -5,13 +5,66 @@ import epi.test_framework.TestFailure;
 import epi.test_framework.TimedExecutor;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.LongUnaryOperator;
+
 public class PivotList {
 
   public static ListNode<Integer> listPivoting(ListNode<Integer> l, int x) {
     // TODO - you fill in here.
-    return null;
+
+    ListNode<Integer> lessHead = new ListNode<>(0, null);
+    ListNode<Integer> equalHead = new ListNode<>(0, null);
+    ListNode<Integer> moreHead = new ListNode<>(0, null);
+    List<ListNode<Integer>> merge = Arrays.asList(lessHead, equalHead, moreHead);
+//    ListNode<Integer> curr = l, less = lessHead, equal= equalHead, more = moreHead;
+
+//    while (curr!= null) {
+//      if (curr.data < x) {
+//        less.next = curr;
+//        less = curr;
+//
+//      }
+//      else if (curr.data == x) {
+//        equal.next = curr;
+//        equal = curr;
+//      }
+//      else {
+//        more.next = curr;
+//        more = curr;
+//      }
+//      curr = curr.next;
+//    }
+//
+//    more.next = null;
+//    equal.next = moreHead.next;
+//    less.next = equalHead.next;
+
+    ListNode<Integer> curr = l;
+    while (curr != null) {
+      if (curr.data < x) {
+        merge.get(0).next = curr;
+        merge.set(0, curr);
+      }
+      else if (curr.data == x) {
+        merge.get(1).next = curr;
+        merge.set(1, curr);
+      }
+      else {
+        merge.get(2).next = curr;
+        merge.set(2, curr);
+      }
+      curr = curr.next;
+    }
+    merge.get(2).next = null;
+    merge.get(1).next = moreHead.next;
+    merge.get(0).next = equalHead.next;
+
+    return lessHead.next;
+
+
   }
   public static List<Integer> linkedToList(ListNode<Integer> l) {
     List<Integer> v = new ArrayList<>();
