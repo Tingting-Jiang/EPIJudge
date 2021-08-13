@@ -12,9 +12,9 @@ public class IntAsListAdd {
     int carry = 0;
     while (L1 != null || L2 != null || carry != 0) {
       carry += L1 == null ? 0 : L1.data;
-      L1 = L1 == null ? L1 : L1.next;
+      L1 = L1 == null ? null : L1.next;
       carry += L2 == null ? 0 : L2.data;
-      L2 = L2 == null ? L2 : L2.next;
+      L2 = L2 == null ? null : L2.next;
       int val =  carry % 10;
       carry /= 10;
       node.next = new ListNode<>(val, null);
