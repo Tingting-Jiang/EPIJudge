@@ -17,11 +17,9 @@ public class TreeLevelOrder {
 
     while (!queue.isEmpty()) {
       List<Integer> level = new ArrayList<>();
-      List<BinaryTreeNode<Integer>> temp = new ArrayList<>();
-      while (!queue.isEmpty()) {
-        temp.add(queue.removeFirst());
-      }
-      for (BinaryTreeNode<Integer> node : temp ) {
+      int length = queue.size();
+      for (int i = 0; i< length; i++ ) {
+        BinaryTreeNode<Integer> node = queue.removeFirst();
         if (node.left != null) {
           queue.add(node.left);
         }
