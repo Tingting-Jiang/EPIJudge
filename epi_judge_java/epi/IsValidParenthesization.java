@@ -18,14 +18,23 @@ public class IsValidParenthesization {
     );
     Deque<Character> stack = new ArrayDeque<>();
     for (int i = 0; i < s.length(); i++) {
-      if (!stack.isEmpty() && dic.containsKey(stack.peek()) && dic.get(stack.peek()) == s.charAt(i)) {
-        stack.removeFirst();
-      }
-      else {
-        stack.addFirst(s.charAt(i));
-      }
+//      if (!stack.isEmpty() && dic.containsKey(stack.peek()) &&
+//              dic.get(stack.peek()) == s.charAt(i)) {
+//        stack.removeFirst();
+//      }
+//      else {
+//        stack.addFirst(s.charAt(i));
+//      }
+//
 
+      if (dic.get(s.charAt(i))!= null) {  // this is a left part
+        stack.addFirst(s.charAt(i));
+      } else if (stack.isEmpty()  || dic.get(stack.removeFirst()) != s.charAt(i)) {
+        return false;  // the last char's value in stack is not matching
+      }
     }
+
+
 
     return stack.isEmpty();
   }
