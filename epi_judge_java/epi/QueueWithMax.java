@@ -8,20 +8,35 @@ import java.util.*;
 
 public class
 QueueWithMax {
-  private Deque<Integer> queue = new ArrayDeque<>();
+  private Deque<Integer> maxRecords = new ArrayDeque<>();
+  private Queue<Integer> queue = new ArrayDeque<>();
+
   public void enqueue(Integer x) {
     // TODO - you fill in here.
     queue.add(x);
+    while (!maxRecords.isEmpty() && maxRecords.peekLast().compareTo(x) <0) {
+      maxRecords.removeLast();
+    }
+    maxRecords.add(x);
+
   }
   public Integer dequeue() {
     // TODO - you fill in here.
-    return queue.removeFirst();
+    Integer result = queue.remove();
+    if (result.equals(maxRecords.peekFirst())) {
+      maxRecords.removeFirst();
+    }
+    return result;
+
   }
 
   public Integer max() {
     // TODO - you fill in here.
-    return Collections.max(queue);
+    return maxRecords.peekFirst();
+
   }
+
+
   @EpiUserType(ctorParams = {String.class, int.class})
   public static class QueueOp {
     public String op;
