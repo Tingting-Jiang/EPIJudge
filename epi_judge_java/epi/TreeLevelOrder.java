@@ -12,7 +12,7 @@ public class TreeLevelOrder {
     // TODO - you fill in here.
     Deque<BinaryTreeNode<Integer>> queue = new ArrayDeque<>();
     List<List<Integer>> ans = new ArrayList<>();
-    if (tree == null) return Collections.emptyList();
+    if (tree == null) return ans;
     queue.add(tree);
 
     while (!queue.isEmpty()) {
