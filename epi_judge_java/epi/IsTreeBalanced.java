@@ -16,6 +16,7 @@ public class IsTreeBalanced {
   public static boolean isBalanced(BinaryTreeNode<Integer> tree) {
     // TODO - you fill in here.
     return checkBalance(tree).isBalanced;
+
   }
 
   private static IsTreeBalanced checkBalance(BinaryTreeNode<Integer> tree) {
