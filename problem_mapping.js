@@ -1062,7 +1062,7 @@ problem_mapping = {
                 "total": 3849
             },
             "Java: SumRootToLeaf.java": {
-                "passed": 0,
+                "passed": 3849,
                 "total": 3849
             },
             "Python: sum_root_to_leaf.py": {
@@ -1502,7 +1502,7 @@ problem_mapping = {
                 "total": 948
             },
             "Java: LowestCommonAncestorCloseAncestor.java": {
-                "passed": 0,
+                "passed": 948,
                 "total": 948
             },
             "Python: lowest_common_ancestor_close_ancestor.py": {
