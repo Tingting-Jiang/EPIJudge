@@ -31,8 +31,26 @@ public class TreeRightSibling {
 
   public static void constructRightSibling(BinaryTreeNode<Integer> tree) {
     // TODO - you fill in here.
-    return;
+    while (tree != null ) {
+      addNext(tree);
+      tree = tree.left;
+    }
+
+
+
   }
+
+  private static void addNext(BinaryTreeNode<Integer> tree) {
+    while (tree != null && tree.left != null) {
+      tree.left.next = tree.right;
+      if (tree.next != null) {
+        tree.right.next = tree.next.left;
+      }
+      tree = tree.next;
+    }
+
+  }
+
   private static BinaryTreeNode<Integer>
   cloneTree(BinaryTree<Integer> original) {
     if (original == null) {
