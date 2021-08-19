@@ -12,8 +12,23 @@ public class TreeConnectLeaves {
   public static List<BinaryTreeNode<Integer>>
   createListOfLeaves(BinaryTreeNode<Integer> tree) {
     // TODO - you fill in here.
-    return Collections.emptyList();
+    List<BinaryTreeNode<Integer>> ans = new ArrayList<>();
+    helper(tree, ans);
+    return ans;
+
   }
+
+  private static void helper(BinaryTreeNode<Integer> tree, List<BinaryTreeNode<Integer>> ans) {
+    if (tree != null) {
+      if (tree.left == null && tree.right == null) {
+        ans.add(tree);
+      } else {
+        helper(tree.left, ans);
+        helper(tree.right, ans);
+      }
+    }
+  }
+
   @EpiTest(testDataFile = "tree_connect_leaves.tsv")
   public static List<Integer>
   createListOfLeavesWrapper(TimedExecutor executor,
