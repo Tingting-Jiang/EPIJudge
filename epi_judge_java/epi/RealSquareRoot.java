@@ -6,7 +6,36 @@ public class RealSquareRoot {
 
   public static double squareRoot(double x) {
     // TODO - you fill in here.
-    return 0.0;
+    double left, right;
+    if (x < 1) {
+      left = x;
+      right = 1;
+    }
+    else {
+      right = x;
+      left = 1;
+    }
+
+    while (ordering(left, right) != Order.EQUAL) {
+      double mid = left + (right - left)* 0.5;
+      double pro = mid * mid;
+
+      if (ordering(pro,x) == Order.GREATER) {
+        right = mid;
+      } else {
+        left = mid;
+      }
+    }
+
+    return left;
+  }
+
+  private enum Order{SMALLER, EQUAL, GREATER}
+
+  private static Order ordering (double a, double b) {
+    final double EPSILON = 0.000001;
+    double dif = (a-b)/Math.max(Math.abs(a), Math.abs(b));
+    return dif < -EPSILON ? Order.SMALLER : (dif > EPSILON ? Order.GREATER : Order.EQUAL);
   }
 
   public static void main(String[] args) {
