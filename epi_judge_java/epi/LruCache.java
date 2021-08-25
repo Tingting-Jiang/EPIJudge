@@ -4,21 +4,33 @@ import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class LruCache {
-  LruCache(final int capacity) {}
+  LinkedHashMap<Integer, Integer> dic;
+
+  LruCache(final int capacity) {
+    this.dic = new LinkedHashMap<>(capacity, 1.0f, true) {
+      @Override
+      protected boolean removeEldestEntry(Map.Entry<Integer, Integer> e) {
+        return this.size() > capacity;
+      }
+    };
+  }
   public Integer lookup(Integer key) {
     // TODO - you fill in here.
-    return 0;
+    return dic.getOrDefault(key, -1);
   }
   public void insert(Integer key, Integer value) {
     // TODO - you fill in here.
-    return;
+    dic.putIfAbsent(key, value); // put the pair in the dic only if the key is not in the dic, did not update the price
+
   }
   public Boolean erase(Object key) {
     // TODO - you fill in here.
-    return true;
+    return dic.remove(key) != null;
   }
   @EpiUserType(ctorParams = {String.class, int.class, int.class})
   public static class Op {
