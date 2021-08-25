@@ -4,38 +4,63 @@ import epi.test_framework.EpiTest;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 import epi.test_framework.TimedExecutor;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class LowestCommonAncestorCloseAncestor {
 
   public static BinaryTree<Integer> lca(BinaryTree<Integer> node0,
                                         BinaryTree<Integer> node1) {
     // TODO - you fill in here.
-    int depth0 = checkDepth(node0);
-    int depth1 = checkDepth(node1);
-    if (depth1 > depth0) {
-      BinaryTree<Integer> temp = node1;
-      node1= node0;
-      node0 = temp;
-    }
-    for (int i = 0; i< Math.abs(depth0 - depth1); i++) {
-      node0= node0.parent;
-    }
+//    int depth0 = checkDepth(node0);
+//    int depth1 = checkDepth(node1);
+//    if (depth1 > depth0) {
+//      BinaryTree<Integer> temp = node1;
+//      node1= node0;
+//      node0 = temp;
+//    }
+//    for (int i = 0; i< Math.abs(depth0 - depth1); i++) {
+//      node0= node0.parent;
+//    }
+//
+//    while(node0!= node1) {
+//      node0 = node0.parent;
+//      node1 = node1.parent;
+//    }
+//    return node0;
 
-    while(node0!= node1) {
-      node0 = node0.parent;
-      node1 = node1.parent;
+    Set<BinaryTree<Integer>> dic = new HashSet<>();
+    while (node0 != null || node1 != null) {
+      if (node0!= null) {
+        if (!dic.add(node0)) {
+          return node0;
+        }
+        node0 = node0.parent;
+      }
+
+      if (node1 != null) {
+        if (!dic.add(node1)) {
+          return node1;
+        }
+        node1 = node1.parent;
+      }
+
     }
-    return node0;
+        throw new IllegalArgumentException("NO common ancestor");
+
+
 
   }
 
-  private static int checkDepth(BinaryTree<Integer> node) {
-    int depth = 0;
-    while(node != null) {
-      node = node.parent;
-      depth++;
-    }
-    return depth;
-  }
+//  private static int checkDepth(BinaryTree<Integer> node) {
+//    int depth = 0;
+//    while(node != null) {
+//      node = node.parent;
+//      depth++;
+//    }
+//    return depth;
+//  }
 
   @EpiTest(testDataFile = "lowest_common_ancestor.tsv")
   public static int lcaWrapper(TimedExecutor executor, BinaryTree<Integer> tree,
