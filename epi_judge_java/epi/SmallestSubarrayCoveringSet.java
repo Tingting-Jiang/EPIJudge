@@ -4,9 +4,10 @@ import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 import epi.test_framework.TimedExecutor;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 public class SmallestSubarrayCoveringSet {
 
   // Represent subarray by starting and ending indices, inclusive.
@@ -23,7 +24,33 @@ public class SmallestSubarrayCoveringSet {
   public static Subarray findSmallestSubarrayCoveringSet(List<String> paragraph,
                                                          Set<String> keywords) {
     // TODO - you fill in here.
-    return new Subarray(0, 0);
+    Map<String, Long> dic = keywords.stream().collect(
+            Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    Subarray result = new Subarray(-1, -1);
+
+    int leftToCover = keywords.size();
+    for (int left = 0, right = 0; right < paragraph.size(); ++right) {
+      String wordRight = paragraph.get(right);
+
+      if (dic.containsKey(wordRight) && (dic.put(wordRight, dic.get(wordRight)-1) >=1)) {
+        --leftToCover;
+      }
+
+      while (leftToCover == 0) {
+        if ((result.start == -1 && result.end == -1) || (right - left) < (result.end - result.start)) {
+          result.start = left;
+          result.end = right;
+        }
+        String wordLeft = paragraph.get(left);
+        if (dic.containsKey(wordLeft) && (dic.put(wordLeft, dic.get(wordLeft) +1) >= 0)) {
+          ++leftToCover;
+        }
+        ++left;
+      }
+
+    }
+
+    return result;
   }
   @EpiTest(testDataFile = "smallest_subarray_covering_set.tsv")
   public static int findSmallestSubarrayCoveringSetWrapper(
