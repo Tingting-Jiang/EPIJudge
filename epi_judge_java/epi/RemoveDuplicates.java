@@ -48,7 +48,17 @@ public class RemoveDuplicates {
   }
   public static void eliminateDuplicate(List<Name> names) {
     // TODO - you fill in here.
-    return;
+    Collections.sort(names);
+    int idx = 0;
+    for (int i = 1; i < names.size(); i++) {
+      if (!names.get(i).firstName.equals(names.get(idx).firstName)) {
+        idx ++;
+        names.set(idx, names.get(i));
+      }
+
+    }
+
+    names.subList(idx+1, names.size()).clear();
   }
   @EpiTest(testDataFile = "remove_duplicates.tsv")
   public static List<Name> eliminateDuplicateWrapper(List<Name> names) {
