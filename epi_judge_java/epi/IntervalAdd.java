@@ -44,7 +44,25 @@ public class IntervalAdd {
   public static List<Interval> addInterval(List<Interval> disjointIntervals,
                                            Interval newInterval) {
     // TODO - you fill in here.
-    return null;
+    List<Interval> ans = new ArrayList<>();
+
+    int idx = 0;
+    while (idx < disjointIntervals.size() && disjointIntervals.get(idx).right < newInterval.left) {
+        ans.add(disjointIntervals.get(idx));
+        idx ++;
+      }
+
+    while (idx < disjointIntervals.size() && disjointIntervals.get(idx).left <= newInterval.right) {
+        newInterval = new Interval(Math.min(disjointIntervals.get(idx).left, newInterval.left),
+                Math.max(disjointIntervals.get(idx).right, newInterval.right));
+        idx ++;
+    }
+
+    ans.add(newInterval);
+    ans.addAll(disjointIntervals.subList(idx, disjointIntervals.size()));
+
+
+    return ans;
   }
 
   public static void main(String[] args) {
