@@ -6,7 +6,18 @@ public class IsTreeABst {
 
   public static boolean isBinaryTreeBST(BinaryTreeNode<Integer> tree) {
     // TODO - you fill in here.
-    return true;
+    int upper = Integer.MAX_VALUE;
+    int lower = Integer.MIN_VALUE;
+    return helper(tree, upper, lower);
+
+  }
+
+  private static boolean helper(BinaryTreeNode<Integer> tree, int upper, int lower) {
+    if (tree == null) return true;
+    if (tree.data < lower || tree.data > upper) return false;
+    return helper(tree.left, tree.data, lower) && helper(tree.right, upper, tree.data);
+
+
   }
 
   public static void main(String[] args) {
