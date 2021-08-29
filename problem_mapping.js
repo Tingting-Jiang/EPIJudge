@@ -1770,7 +1770,7 @@ problem_mapping = {
                 "total": 1005
             },
             "Java: FindSalaryThreshold.java": {
-                "passed": 0,
+                "passed": 4,
                 "total": 1005
             },
             "Python: find_salary_threshold.py": {
