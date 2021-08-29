@@ -4,34 +4,58 @@ import epi.test_framework.EpiUserType;
 import epi.test_framework.GenericTest;
 import epi.test_framework.TestFailure;
 
-import java.util.List;
+import java.util.*;
+
 public class AddingCredits {
 
+
   public static class ClientsCreditsInfo {
+
+    private int offset = 0;
+    private Map<String, Integer> clientToCredit = new HashMap<>();
+    private NavigableMap<Integer, Set<String>> creditToClient = new TreeMap<>();
     public void insert(String clientID, int c) {
       // TODO - you fill in here.
-      return;
+      remove(clientID);
+      clientToCredit.put(clientID, c - offset);
+      creditToClient.putIfAbsent(c- offset, new HashSet<>());
+      Set<String> set = creditToClient.get(c-offset);
+      set.add(clientID);
+
     }
     public boolean remove(String clientID) {
       // TODO - you fill in here.
-      return true;
+      Integer credit = clientToCredit.get(clientID);
+      if (credit != null) {
+        creditToClient.get(credit).remove(clientID);
+        if (creditToClient.get(credit).isEmpty()) {
+          creditToClient.remove(credit);
+        }
+        clientToCredit.remove(clientID);
+        return true;
+      }
+
+      return false;
     }
     public int lookup(String clientID) {
       // TODO - you fill in here.
-      return 0;
+      Integer credit = clientToCredit.get(clientID);
+      return credit == null ? -1: credit + offset;
     }
+
     public void addAll(int C) {
       // TODO - you fill in here.
-      return;
+      this.offset += C;
     }
     public String max() {
       // TODO - you fill in here.
-      return "";
+      return creditToClient.isEmpty() ? "" :
+              creditToClient.lastEntry().getValue().iterator().next();
     }
     @Override
     public String toString() {
       // TODO - you fill in here.
-      return super.toString();
+      return "{clientToCredit = " + clientToCredit + " }";
     }
   }
   @EpiUserType(ctorParams = {String.class, String.class, int.class})
