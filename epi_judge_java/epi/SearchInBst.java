@@ -5,7 +5,19 @@ public class SearchInBst {
 
   public static BstNode<Integer> searchBST(BstNode<Integer> tree, int key) {
     // TODO - you fill in here.
-    return null;
+//    while (tree != null) {
+//      if (tree.data == key) {
+//        return tree;
+//      } else if (tree.data < key) {
+//        tree = tree.right;
+//      } else {
+//        tree = tree.left;
+//      }
+//    }
+//    return null;
+
+    return tree == null || tree.data == key ? tree :
+            tree.data> key ? searchBST(tree.left, key): searchBST(tree.right, key);
   }
   @EpiTest(testDataFile = "search_in_bst.tsv")
   public static int searchBSTWrapper(BstNode<Integer> tree, int key) {
