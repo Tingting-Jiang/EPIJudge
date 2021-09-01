@@ -14,7 +14,6 @@ public class NQueens {
     // TODO - you fill in here.
 
     List<List<Integer>> ans = new ArrayList<>();
-
     queensHelper(n, 0, new ArrayList<Integer>(), ans);
     return ans;
   }
