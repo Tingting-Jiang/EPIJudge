@@ -1998,7 +1998,7 @@ problem_mapping = {
                 "total": 10
             },
             "Java: NQueens.java": {
-                "passed": 0,
+                "passed": 10,
                 "total": 10
             },
             "Python: n_queens.py": {
@@ -2012,7 +2012,7 @@ problem_mapping = {
                 "total": 8
             },
             "Java: Permutations.java": {
-                "passed": 0,
+                "passed": 8,
                 "total": 8
             },
             "Python: permutations.py": {

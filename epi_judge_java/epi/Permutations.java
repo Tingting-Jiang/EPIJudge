@@ -4,6 +4,7 @@ import epi.test_framework.EpiTestComparator;
 import epi.test_framework.GenericTest;
 import epi.test_framework.LexicographicalListComparator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public class Permutations {
@@ -11,7 +12,17 @@ public class Permutations {
 
   public static List<List<Integer>> permutations(List<Integer> A) {
     // TODO - you fill in here.
-    return null;
+
+    List<List<Integer>> ans = new ArrayList<>();
+    Collections.sort(A);
+    do{
+      ans.add(new ArrayList<>(A));
+      A = NextPermutation.nextPermutation(A);
+
+    } while (!A.isEmpty());
+
+
+    return ans;
   }
   @EpiTestComparator
   public static boolean comp(List<List<Integer>> expected,
