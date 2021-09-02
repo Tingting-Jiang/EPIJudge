@@ -4,6 +4,7 @@ import epi.test_framework.EpiTestComparator;
 import epi.test_framework.GenericTest;
 import epi.test_framework.LexicographicalListComparator;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 public class PowerSet {
@@ -11,8 +12,31 @@ public class PowerSet {
 
   public static List<List<Integer>> generatePowerSet(List<Integer> inputSet) {
     // TODO - you fill in here.
-    return null;
+    List<List<Integer>> ans = new ArrayList<>();
+//    System.out.println("new test + " + inputSet + "----------");
+
+    helper(inputSet, new ArrayList<Integer>(), ans);
+
+    return ans;
   }
+
+  private static void helper(List<Integer> inputSet, ArrayList<Integer> path, List<List<Integer>> ans) {
+
+    ans.add(new ArrayList<>(path));
+//    System.out.println("ans" + ans);
+    for (int i = 0; i < inputSet.size(); i++) {
+      System.out.println(inputSet + " " + i + " " + path );
+      path.add(inputSet.get(i));
+//      System.out.println(inputSet + " " + i + " " + path );
+//      System.out.println("sublist: " +inputSet.subList(i + 1, inputSet.size()));
+        helper(inputSet.subList(i + 1, inputSet.size()), path, ans);
+        path.remove(path.size()-1);
+//      System.out.println("after remove: " + path);
+
+
+    }
+  }
+
   @EpiTestComparator
   public static boolean comp(List<List<Integer>> expected,
                              List<List<Integer>> result) {
