@@ -2134,7 +2134,7 @@ problem_mapping = {
                 "total": 46
             },
             "Java: MaxSumSubarray.java": {
-                "passed": 0,
+                "passed": 1001,
                 "total": 1001
             },
             "Python: fibonacci.py": {

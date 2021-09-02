@@ -8,7 +8,14 @@ public class MaxSumSubarray {
 
   public static int findMaximumSubarray(List<Integer> A) {
     // TODO - you fill in here.
-    return -1;
+    int max = 0;
+    int currVal = 0;
+    for (int num: A) {
+      currVal = Math.max(num, currVal+ num);
+      max = Math.max(max, currVal);
+
+    }
+    return max;
   }
 
   public static void main(String[] args) {
