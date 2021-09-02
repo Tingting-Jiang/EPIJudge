@@ -15,7 +15,9 @@ public class EnumerateTrees {
     // TODO - you fill in here.
 
     List<BinaryTreeNode<Integer>> ans = new ArrayList<>();
-    if (numNodes == 0) return null;
+    if (numNodes == 0) {
+      ans.add(null);
+    }
 
     for (int left = 0; left < numNodes; left++) {
       int right = numNodes - left -1;
