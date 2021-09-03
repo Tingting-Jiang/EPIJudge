@@ -10,7 +10,23 @@ public class NumberOfScoreCombinations {
   numCombinationsForFinalScore(int finalScore,
                                List<Integer> individualPlayScores) {
     // TODO - you fill in here.
-    return 0;
+    int numScores = individualPlayScores.size();
+    int [][] dic = new int[numScores][finalScore +1];
+
+    for (int row = 0; row < numScores; row++) {
+      dic[row][0] = 1;
+      for (int col = 1; col <= finalScore; col++) {
+
+        int withoutThis = row-1>=0? dic[row-1][col]:0;
+        int withThis = col - individualPlayScores.get(row) >=0 ? dic[row][col-individualPlayScores.get(row)]: 0;
+        dic[row][col] = withoutThis + withThis;
+
+
+      }
+
+    }
+
+    return dic[numScores-1][finalScore];
   }
 
   public static void main(String[] args) {
