@@ -2222,7 +2222,7 @@ problem_mapping = {
                 "total": 100
             },
             "Java: Knapsack.java": {
-                "passed": 0,
+                "passed": 100,
                 "total": 100
             },
             "Python: knapsack.py": {
@@ -2546,7 +2546,7 @@ problem_mapping = {
                 "total": 48
             },
             "Java: StringTransformability.java": {
-                "passed": 0,
+                "passed": 48,
                 "total": 48
             },
             "Python: string_transformability.py": {
