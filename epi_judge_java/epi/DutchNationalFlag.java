@@ -13,28 +13,19 @@ public class DutchNationalFlag {
 
   public static void dutchFlagPartition(int pivotIndex, List<Color> A) {
     // TODO - you fill in here.
-    int small= 0, equal = 0, large = A.size();
-    Color temp = A.get(pivotIndex);
-    // small point to the start point of where the equal part begins
-    // equal is the pointer to update the unclassified area
-    // large point to where larger number begins, thus it should first -1 then swap
-    // value, so to set the large from A.size() not A.size()-1
-    while (equal < large) {
-      if (A.get(equal).ordinal() < temp.ordinal()){
-        Collections.swap(A, small, equal);
-        small++;
-        equal++;
-      }
-      else if (A.get(equal).ordinal() == temp.ordinal()){
-        equal++;
+    int small = 0, equal = 0, large = A.size();
+    Color pivot = A.get(pivotIndex);
 
-      }
-      else{
-//        large --;
-//        Collections.swap(A, equal, large);
+    while (equal < large) {
+      if (A.get(equal).ordinal() < pivot.ordinal()) {
+        Collections.swap(A, small++, equal++);
+      } else if (A.get(equal).ordinal() == pivot.ordinal()) {
+        equal++;
+      } else {
         Collections.swap(A, equal, --large);
       }
     }
+
 
 
     return;
