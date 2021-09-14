@@ -6,27 +6,49 @@ public class LookAndSay {
 
   public static String lookAndSay(int n) {
     // TODO - you fill in here.
-    String ans = "1";
+    String s = "1";
     for (int i = 1; i < n; i++) {
-      ans = getNext(ans);
+      s = nextNumber(s);
+
     }
-    return ans;
+
+    return s;
 
   }
 
-  private static String getNext(String ans) {
+  private static String nextNumber(String s) {
     StringBuilder builder = new StringBuilder();
-    for (int j = 0; j < ans.length(); ++j) {
-      int count = 1;
-      while (j + 1 < ans.length() && ans.charAt(j) == ans.charAt(j+1)) {
-        ++count;
-        ++j;
-      }
-      builder.append(count).append(ans.charAt(j));
-    }
+//    int count = 1;
+//    for (int i = 1; i < s.length(); i++) {
+//      if(s.charAt(i) != s.charAt(i-1)) {
+//        builder.append(count);
+//        builder.append(s.charAt(i-1));
+//        count = 1;
+//      }
+//      else {
+//        count ++;
+//      }
+//
+//    }
+//    builder.append(count);
+//    builder.append(s.charAt(s.length()-1));
+//    return builder.toString();
 
+
+    for (int i = 0; i < s.length(); i++) {
+
+      int count = 1;
+      while (i+1 < s.length() && s.charAt(i) == s.charAt(i+1)) {
+        count ++;
+        i++;
+
+      }
+      builder.append(count).append(s.charAt(i));
+
+    }
     return builder.toString();
   }
+
 
   public static void main(String[] args) {
     System.exit(
