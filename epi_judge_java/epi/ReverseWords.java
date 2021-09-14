@@ -9,35 +9,38 @@ public class ReverseWords {
 
   public static void reverseWords(char[] input) {
     // TODO - you fill in here.
-    int left = 0, right = input.length;
-    reverseSingle(input, 0, right-1);
+
+    int left= 0, right = input.length-1;
+    reverse(input, left, right);
+
+
     int start = 0;
-    int end = 0;
-
-    while (start < right ) {
-      while (start < end || start < right && input[start] == ' ') {
-        start ++; // skip empty space
+    int k = 0;
+    while (start < input.length)  {
+      while (start< k || (start< input.length && input[start] == ' ')) {
+        start++;
       }
-      while (end < start || end < right && input[end] != ' ') {
-        end ++; // skip non-spaces chars
+      while (k < start || (k < input.length && input[k] != ' ')) {
+        k++;
       }
-      reverseSingle(input, start, end-1);
-
+      reverse(input, start, k-1);
 
     }
 
   }
 
-
-  public static  void reverseSingle(char[] word, int left, int right) {
-
-    while (left < right) {
-      char temp = word[left];
-      word[left++] = word[right];
-      word[right--] = temp;
+  private static void reverse(char[] input, int start, int finish) {
+    while (start < finish) {
+      char temp = input[finish];
+      input[finish--] = input[start];
+      input[start++] = temp;
     }
-
   }
+
+
+
+
+
   @EpiTest(testDataFile = "reverse_words.tsv")
   public static String reverseWordsWrapper(TimedExecutor executor, String s)
       throws Exception {
