@@ -6,20 +6,17 @@ public class StringIntegerInterconversion {
 
   public static String intToString(int x) {
     // TODO - you fill in here.
-    final boolean sign = x < 0;
+    boolean isNegative = x < 0 ? true: false;
+
     StringBuilder builder = new StringBuilder();
-    x= Math.abs(x);
-
     do{
-      builder.append((char) ('0'+ x%10));
+      builder.append((char)('0' + Math.abs(x % 10)));
       x = x/10;
-    } while (x!=0);
 
-    if (sign) {
-      builder.append('-');
-    }
-    builder.reverse();
-    return builder.toString();
+    } while (x != 0);
+
+    return builder.append(isNegative? '-' : "").reverse().toString();
+
 
   }
   public static int stringToInt(String s) {
