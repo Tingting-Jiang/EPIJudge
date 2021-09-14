@@ -6,20 +6,21 @@ public class RunLengthCompression {
 
   public static String decoding(String s) {
     // TODO - you fill in here.
-    int count = 0;
     StringBuilder builder = new StringBuilder();
+    int count = 0;
     for (int i = 0; i < s.length(); i++) {
       char c = s.charAt(i);
       if (Character.isDigit(c)) {
-        count = count * 10 + c - '0';
+        count = count * 10 + c -'0';
       } else {
         while (count > 0) {
           builder.append(c);
-          count--;
+          count --;
         }
-
       }
     }
+
+
     return builder.toString();
 
   }
@@ -27,16 +28,17 @@ public class RunLengthCompression {
   public static String encoding(String s) {
     // TODO - you fill in here.
     StringBuilder builder = new StringBuilder();
-    for (int i = 0; i < s.length(); i++) {
+    int start = 0;
+    while (start < s.length()) {
       int count = 1;
-      while (i+1 < s.length() && s.charAt(i) == s.charAt(i+1)) {
+      while (start+1 < s.length() && s.charAt(start) == s.charAt(start+1)) {
+        start++;
         count ++;
-        i++;
       }
-      builder.append(count).append(s.charAt(i));
+      builder.append(count).append(s.charAt(start++));
 
     }
-    return builder.toString();
+   return builder.toString();
 
 
   }
