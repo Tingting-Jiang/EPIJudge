@@ -7,20 +7,19 @@ public class SortedListsMerge {
   public static ListNode<Integer> mergeTwoSortedLists(ListNode<Integer> L1,
                                                       ListNode<Integer> L2) {
     // TODO - you fill in here.
-    ListNode<Integer> dummy = new ListNode<>(0, null);
-    ListNode<Integer> curr = dummy;
-    while (L1 != null && L2 != null) {
-      if (L1.data <= L2.data) {
-        curr.next = L1;
-        L1= L1.next;
-      }
-      else {
-        curr.next = L2;
+    ListNode<Integer> dummy = new ListNode<>(0,null);
+    ListNode<Integer> traverse = dummy;
+    while (L1 != null && L2!= null) {
+      if(L1.data < L2.data) {
+        traverse.next = L1;
+        L1 = L1.next;
+      } else {
+        traverse.next = L2;
         L2 = L2.next;
       }
-      curr = curr.next;
+      traverse = traverse.next;
     }
-    curr.next = L1 != null ? L1 : L2;
+    traverse.next = L1 == null ? L2 : L1;
     return dummy.next;
 
   }
