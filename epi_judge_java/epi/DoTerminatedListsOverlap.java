@@ -32,22 +32,22 @@ public class DoTerminatedListsOverlap {
 
 
     // use hashmap to record the node been visited, time: M+N space: M/N
-    HashMap<ListNode<Integer>,Integer > dic = new HashMap<>();
-    while (l0 != null) {
-      dic.put(l0, l0.data);
-      l0 = l0.next;
-    }
-    while (l1 != null) {
-      if (dic.containsKey(l1)) {
-        return l1;
-      }
-      l1 = l1.next;
-    }
-    return null;
-
-
-
-  }
+//    HashMap<ListNode<Integer>,Integer > dic = new HashMap<>();
+//    while (l0 != null) {
+//      dic.put(l0, l0.data);
+//      l0 = l0.next;
+//    }
+//    while (l1 != null) {
+//      if (dic.containsKey(l1)) {
+//        return l1;
+//      }
+//      l1 = l1.next;
+//    }
+//    return null;
+//
+//
+//
+//  }
 
 //  private static int length(ListNode<Integer> l) {
 //    int ans = 0;
@@ -60,8 +60,44 @@ public class DoTerminatedListsOverlap {
 
 
 
+    int len0 = checkLength(l0);
+    int len1 = checkLength(l1);
+
+    if (len1 > len0) {
+      l1 = advance(l1, len1, len0);
+    } else {
+      l0 = advance(l0, len0,len1);
+    }
+
+    while (l1!= l0 && l1 != null && l0 != null) {
+      l1 = l1.next;
+      l0 = l0.next;
+
+    }
+    return l1;
 
 
+
+
+  }
+
+  private static ListNode<Integer> advance(ListNode<Integer> l1, int len1, int len0) {
+    while (len1- len0 > 0) {
+      l1 = l1.next;
+      len1--;
+    }
+    return l1;
+  }
+
+  private static int checkLength(ListNode<Integer> l1) {
+    int length = 0;
+    while (l1!= null) {
+      l1 = l1.next;
+      length++;
+    }
+    return length;
+
+  }
 
 
   @EpiTest(testDataFile = "do_terminated_lists_overlap.tsv")
