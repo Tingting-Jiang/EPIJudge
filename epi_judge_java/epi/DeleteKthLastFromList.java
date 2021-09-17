@@ -8,17 +8,19 @@ public class DeleteKthLastFromList {
   public static ListNode<Integer> removeKthLast(ListNode<Integer> L, int k) {
     // TODO - you fill in here.
     ListNode<Integer> dummy = new ListNode<>(0, L);
-    ListNode<Integer> curr = dummy.next;
+    ListNode<Integer> traverse = L;
     while (k-- > 0) {
-      curr = curr.next;
+      traverse = traverse.next;
     }
-    ListNode<Integer> second = dummy;
-    while (curr != null) {
-      curr = curr.next;
-      second = second.next;
+    ListNode<Integer> slow = dummy;
+    while (traverse != null) {
+      slow = slow.next;
+      traverse = traverse.next;
     }
-    second.next = second.next.next;
+    slow.next = slow.next.next;
     return dummy.next;
+
+
   }
 
   public static void main(String[] args) {
