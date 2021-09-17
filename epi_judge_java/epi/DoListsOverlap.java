@@ -5,27 +5,29 @@ import epi.test_framework.TestFailure;
 import epi.test_framework.TimedExecutor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 public class DoListsOverlap {
 
   public static ListNode<Integer> overlappingLists(ListNode<Integer> l0,
                                                    ListNode<Integer> l1) {
     // TODO - you fill in here.
-    ListNode<Integer> trans0 = IsListCyclic.hasCycle(l0);
-    ListNode<Integer> trans1 = IsListCyclic.hasCycle(l1);
 
-    if ((trans1 != null && trans0 == null) || (trans0 != null && trans1 == null)) return null;
-    else if  (trans0 == null && trans1 == null)
+    ListNode<Integer> root0 = IsListCyclic.hasCycle(l0);
+    ListNode<Integer>root1 = IsListCyclic.hasCycle(l1);
+    if (root0 == null && root1 == null) {
       return DoTerminatedListsOverlap.overlappingNoCycleLists(l0, l1);
-
-    ListNode<Integer> temp = trans0;
-    // 必须是do while loop, or the temp will not enter the while loop
-    do {
+    }
+    if ((root0 == null && root1 != null)
+            || (root1 == null && root0 != null)) {
+      return null;
+    }
+    ListNode<Integer> temp = root1;
+    do{
       temp = temp.next;
-    } while (temp != trans1 && temp != trans0);
+    } while (root0 != temp && temp != root1);
 
-    return temp == trans1 ? temp : null;
-
+    return temp == root0 ? root0 : null;
 
   }
   @EpiTest(testDataFile = "do_lists_overlap.tsv")
